@@ -8,4 +8,7 @@
         "node_modules/*",
         "public/*"
     ],
+    "compilerOptions": {
+        "types": ["node"]
+    }
 }
