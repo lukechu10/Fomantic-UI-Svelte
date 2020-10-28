@@ -18,10 +18,6 @@
         float: right;
     }
 
-    .ui.component.segment {
-        padding-bottom: 0;
-    }
-
     .ui.code.segment {
         padding: 5px;
         margin: 0;
@@ -54,7 +50,10 @@
 
     {#if showCode}
         <div class="ui code segment" transition:slide>
-            <Highlight language="{xml}" code={source || 'No code availiable. Create a PR and contribute it now!'} />
+            <Highlight
+                language={xml}
+                code={source || 'No code availiable. Create a PR and contribute it now!'}
+            />
         </div>
     {/if}
 </div>
