@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "format": "prettier --write src stories --plugin-search-dir=. ./**/*.html",
-    "format:check": "prettier --check src stories --plugin-search-dir=. ./**/*.html"
+    "format": "prettier --write src stories .storybook --plugin-search-dir=. ./**/*.html",
+    "format:check": "prettier --check src stories .storybook --plugin-search-dir=. ./**/*.html"
   },
   "keywords": [],
   "author": "",
@@ -28,6 +28,7 @@
     "svelte": "^3.29.4",
     "svelte-adapter": "^0.4.0",
     "svelte-check": "^1.1.2",
+    "svelte-highlight": "^0.6.2",
     "svelte-loader": "^2.13.6",
     "svelte-preprocess": "^4.5.2",
     "typescript": "^4.0.3"

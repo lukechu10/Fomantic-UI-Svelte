@@ -1,26 +1,36 @@
 <script lang="ts">
     import { slide } from "svelte/transition";
+    import { Highlight } from "svelte-highlight";
+    import { xml } from "svelte-highlight/languages/index";
+    import "svelte-highlight/styles/atom-one-dark.css";
 
-    export let source;
+    export let source: string = "";
     /**
      * Control the height in pixels of the component view.
-    */
+     */
     export let viewHeight = -1;
 
     let showCode = false;
 </script>
 
 <style>
-    pre {
-        margin: 0;
-    }
-
     .show-code-icon {
         float: right;
     }
 
     .ui.component.segment {
         padding-bottom: 0;
+    }
+
+    .ui.code.segment {
+        padding: 5px;
+        margin: 0;
+        background-color: #282c34; /* color in atom-one-dark theme */
+        border: 1px #282c34 solid;
+    }
+
+    :global(.ui.code.segment pre.hljs) {
+        margin: 0;
     }
 </style>
 
@@ -43,10 +53,8 @@
     </div>
 
     {#if showCode}
-        <div class="ui segment" transition:slide>
-            <pre>
-                {source}
-            </pre>
+        <div class="ui code segment" transition:slide>
+            <Highlight language="{xml}" code={source || 'No code availiable. Create a PR and contribute it now!'} />
         </div>
     {/if}
 </div>
