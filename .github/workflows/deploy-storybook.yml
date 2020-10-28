@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy-storybook:
+    name: Deploy Storybook
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [ 12.x ]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install dependencies
+      run: yarn install
+
+    - name: Build storybook
+      run: yarn build-storybook
+
+    - name: Create .nojekyll file
+      run: touch storybook-static/.nojekyll
+
+    - name: Publish to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3.7.0
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: gh_pages
+        force_orphan: true
+        publish_dir: storybook-static/
+        enable_jekyll: false
